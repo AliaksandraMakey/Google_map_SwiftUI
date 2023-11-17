@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import GoogleMaps
 
 @main
 struct Google_map_SwiftUIApp: App {
+    init() {
+        GMSServices.provideAPIKey("AIzaSyArENEA_Kq4mfbHeb5GyPlZPFnkYmglxXU")
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
