@@ -7,5 +7,6 @@ target 'Google_map_SwiftUI' do
 
   # Pods for Google_map_SwiftUI
   pod 'GoogleMaps'
+  pod 'RealmSwift'
 
 end

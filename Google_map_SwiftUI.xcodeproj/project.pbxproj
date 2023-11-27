@@ -16,6 +16,11 @@
 		8526F9C22B0688F000F1431F /* MapStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8526F9C12B0688F000F1431F /* MapStyle.swift */; };
 		852C3B992B0762160026ED2B /* MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3B982B0762160026ED2B /* MapError.swift */; };
 		852C3BA22B07A19A0026ED2B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3BA12B07A19A0026ED2B /* CustomButton.swift */; };
+		85A27A772B0FAF850066DA0F /* DataBaseLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A762B0FAF850066DA0F /* DataBaseLocationProtocol.swift */; };
+		85A27A792B0FAF910066DA0F /* PathRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A782B0FAF910066DA0F /* PathRealmObject.swift */; };
+		85A27A7B2B0FAF9C0066DA0F /* LocationRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A7A2B0FAF9C0066DA0F /* LocationRealmObject.swift */; };
+		85A27A7D2B0FAFA60066DA0F /* RealmServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A7C2B0FAFA60066DA0F /* RealmServise.swift */; };
+		85A27A7F2B0FAFB40066DA0F /* RealmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A7E2B0FAFB40066DA0F /* RealmError.swift */; };
 		8CF5F0E329D72F6F0C5810E1 /* Pods_Google_map_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2DEF7F1B3011E3B65C2586 /* Pods_Google_map_SwiftUI.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,11 +32,16 @@
 		8511E72E2B04A4ED0092042A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8511E7312B04A4ED0092042A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8511E7392B04A8350092042A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		8511E73B2B04B9260092042A /* Google-map-SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Google-map-SwiftUI-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8511E73B2B04B9260092042A /* Google-map-SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Google-map-SwiftUI-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8511E73D2B04BA5D0092042A /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		8526F9C12B0688F000F1431F /* MapStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStyle.swift; sourceTree = "<group>"; };
 		852C3B982B0762160026ED2B /* MapError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapError.swift; sourceTree = "<group>"; };
 		852C3BA12B07A19A0026ED2B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		85A27A762B0FAF850066DA0F /* DataBaseLocationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseLocationProtocol.swift; sourceTree = "<group>"; };
+		85A27A782B0FAF910066DA0F /* PathRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathRealmObject.swift; sourceTree = "<group>"; };
+		85A27A7A2B0FAF9C0066DA0F /* LocationRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRealmObject.swift; sourceTree = "<group>"; };
+		85A27A7C2B0FAFA60066DA0F /* RealmServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmServise.swift; sourceTree = "<group>"; };
+		85A27A7E2B0FAFB40066DA0F /* RealmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmError.swift; sourceTree = "<group>"; };
 		DC2DEF7F1B3011E3B65C2586 /* Pods_Google_map_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Google_map_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81FA07B0040771F5CE1C1EE /* Pods-Google_map_SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Google_map_SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Google_map_SwiftUI/Pods-Google_map_SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,9 +67,39 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		850F51692B0F5E8E0091405E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8511E72A2B04A4EC0092042A /* Google_map_SwiftUIApp.swift */,
+				8511E72C2B04A4EC0092042A /* ContentView.swift */,
+				85A27A742B0FAF5F0066DA0F /* BusinessLogic */,
+				8511E73C2B04BA550092042A /* Entity */,
+				852C3B9A2B0762970026ED2B /* Error */,
+				852C3B9C2B07630B0026ED2B /* Flows */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		850F516A2B0F5EB10091405E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8511E72E2B04A4ED0092042A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		850F516B2B0F60B40091405E /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				852C3BA12B07A19A0026ED2B /* CustomButton.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		8511E71E2B04A4EC0092042A = {
 			isa = PBXGroup;
 			children = (
+				8511E73B2B04B9260092042A /* Google-map-SwiftUI-Info.plist */,
 				8511E7292B04A4EC0092042A /* Google_map_SwiftUI */,
 				8511E7282B04A4EC0092042A /* Products */,
 				10526C358A3CC81D9B4F258C /* Pods */,
@@ -78,14 +118,9 @@
 		8511E7292B04A4EC0092042A /* Google_map_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				8511E73B2B04B9260092042A /* Google-map-SwiftUI-Info.plist */,
-				8511E72A2B04A4EC0092042A /* Google_map_SwiftUIApp.swift */,
-				8511E72C2B04A4EC0092042A /* ContentView.swift */,
-				852C3B9C2B07630B0026ED2B /* Flow */,
-				852C3B9A2B0762970026ED2B /* Error */,
-				8511E73C2B04BA550092042A /* Models */,
+				850F51692B0F5E8E0091405E /* App */,
 				852C3B9B2B0762B00026ED2B /* Core */,
-				8511E72E2B04A4ED0092042A /* Assets.xcassets */,
+				850F516A2B0F5EB10091405E /* Resources */,
 				8511E7302B04A4ED0092042A /* Preview Content */,
 			);
 			path = Google_map_SwiftUI;
@@ -107,12 +142,12 @@
 			path = MapView;
 			sourceTree = "<group>";
 		};
-		8511E73C2B04BA550092042A /* Models */ = {
+		8511E73C2B04BA550092042A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				8511E73D2B04BA5D0092042A /* MapViewModel.swift */,
 			);
-			path = Models;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		852C3B9A2B0762970026ED2B /* Error */ = {
@@ -126,18 +161,38 @@
 		852C3B9B2B0762B00026ED2B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				852C3BA12B07A19A0026ED2B /* CustomButton.swift */,
 				8526F9C12B0688F000F1431F /* MapStyle.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		852C3B9C2B07630B0026ED2B /* Flow */ = {
+		852C3B9C2B07630B0026ED2B /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				850F516B2B0F60B40091405E /* Custom */,
 				8511E7382B04A8210092042A /* MapView */,
 			);
-			path = Flow;
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		85A27A742B0FAF5F0066DA0F /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				85A27A752B0FAF6E0066DA0F /* Realm */,
+			);
+			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		85A27A752B0FAF6E0066DA0F /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				85A27A762B0FAF850066DA0F /* DataBaseLocationProtocol.swift */,
+				85A27A782B0FAF910066DA0F /* PathRealmObject.swift */,
+				85A27A7A2B0FAF9C0066DA0F /* LocationRealmObject.swift */,
+				85A27A7C2B0FAFA60066DA0F /* RealmServise.swift */,
+				85A27A7E2B0FAFB40066DA0F /* RealmError.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		FB2A5357E70D30D9450F41CF /* Frameworks */ = {
@@ -160,6 +215,7 @@
 				8511E7242B04A4EC0092042A /* Frameworks */,
 				8511E7252B04A4EC0092042A /* Resources */,
 				B88F018A72AFDAE188442464 /* [CP] Copy Pods Resources */,
+				817C08CD1EA7DEBA35B4C1F8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,6 +272,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		817C08CD1EA7DEBA35B4C1F8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Google_map_SwiftUI/Pods-Google_map_SwiftUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Google_map_SwiftUI/Pods-Google_map_SwiftUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Google_map_SwiftUI/Pods-Google_map_SwiftUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		989B3AF05CB45F58477ACBA1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,12 +336,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8511E72D2B04A4EC0092042A /* ContentView.swift in Sources */,
+				85A27A772B0FAF850066DA0F /* DataBaseLocationProtocol.swift in Sources */,
+				85A27A7F2B0FAFB40066DA0F /* RealmError.swift in Sources */,
 				8511E73A2B04A8350092042A /* MapView.swift in Sources */,
 				8511E72B2B04A4EC0092042A /* Google_map_SwiftUIApp.swift in Sources */,
 				8511E73E2B04BA5D0092042A /* MapViewModel.swift in Sources */,
+				85A27A7B2B0FAF9C0066DA0F /* LocationRealmObject.swift in Sources */,
+				85A27A7D2B0FAFA60066DA0F /* RealmServise.swift in Sources */,
 				852C3BA22B07A19A0026ED2B /* CustomButton.swift in Sources */,
 				8526F9C22B0688F000F1431F /* MapStyle.swift in Sources */,
 				852C3B992B0762160026ED2B /* MapError.swift in Sources */,
+				85A27A792B0FAF910066DA0F /* PathRealmObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

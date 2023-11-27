@@ -1,0 +1,398 @@
+//
+//  MapView.swift
+//  Google_map_SwiftUI
+//
+//  Created by Александра Макей on 15.11.2023.
+//
+
+import SwiftUI
+import GoogleMaps
+
+struct MapView: UIViewRepresentable {
+    //MARK: - Properties
+    @ObservedObject var mapViewModel = MapViewModel()
+    var mapStyleSettings = MapStyle()
+    var coordinator: Coordinator
+    
+    init(mapViewModel: MapViewModel) {
+        self.mapViewModel = mapViewModel
+        self.coordinator = Coordinator(mapViewModel: mapViewModel)
+    }
+
+    /// coordinator
+    func makeCoordinator() -> Coordinator {
+        return coordinator
+    }
+//    var title: String {
+//        let test: String = MapView.Coordinator.trackLocation ? "Start" : "Stop"
+//        return test
+//    }
+//    /// coordinator
+//    func makeCoordinator() -> Coordinator {
+//        return Coordinator(mapViewModel: mapViewModel)
+//    }
+    
+    //MARK: - make UI components
+    func makeUIView(context: Context) -> GMSMapView {
+        let initialCamera = checkCameraPosition()
+        let mapView = GMSMapView(frame: .zero, camera: initialCamera)
+        mapView.settings.compassButton = true
+        mapView.settings.myLocationButton = true
+        setupButtons(mapView, context: context)
+        mapStyleSettings.configureMapStyle(mapView)
+        
+        ///CLLocationManager
+        configureLocationManager(context: context)
+        mapView.delegate = context.coordinator
+        context.coordinator.mapView = mapView
+        
+        return mapView
+    }
+    //MARK: - Update UI components
+    func updateUIView(_ uiView: GMSMapView, context: Context) {}
+    //MARK: - Metods
+    func checkCameraPosition() -> GMSCameraPosition {
+        if let coordinates = mapViewModel.userCoordinates {
+            return GMSCameraPosition.camera(withTarget: coordinates, zoom: 12.0)
+        } else {
+            return GMSCameraPosition.camera(withLatitude: 37.34033264974476, longitude: -122.06892632102273, zoom: 12.0)
+        }
+    }
+    private func configureLocationManager(context: Context) {
+        let locationManager = CLLocationManager()
+        locationManager.delegate = context.coordinator
+        ///user permission to track location
+        if locationManager.authorizationStatus == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }
+        ///get user coordinates in BackgroundMode
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.requestAlwaysAuthorization()
+        mapViewModel.locationManager = locationManager
+    }
+}
+//MARK: - Coordinator
+extension MapView {
+    class Coordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
+        //MARK: - Properties
+        var mapViewModel: MapViewModel
+        var mapView: GMSMapView?
+        lazy var dataBase: DataBaseLocationProtocol = RealmDataBase()
+        var trackLocation = false
+        
+        //MARK: - Life cicle
+        init(mapViewModel: MapViewModel) {
+            self.mapViewModel = mapViewModel
+        }
+        //MARK: - Action
+        @objc func addMarkerTap(_ sender: UIButton) {
+            if mapViewModel.marker == nil {
+                guard let mapView = sender.superview as? GMSMapView else { return }
+                mapViewModel.addMarker(mapView: mapView)
+            } else {
+                mapViewModel.removeMarker()
+            }
+        }
+        @objc func trackUserLocationTap(_ sender: UIButton) {
+            if trackLocation {
+                finishTrack(model: mapViewModel)
+                showCurrentPath(model: mapViewModel)
+                stopLocation()
+                sender.setTitle("Start", for: .normal)
+            } else {
+                startLocation()
+                startNewTrack(model: mapViewModel)
+                sender.setTitle("Stop", for: .normal)
+            }
+        }
+        @objc func showCurrentLocationTap(_ sender: UIButton) {
+            guard let coordinates = mapViewModel.userCoordinates else {return}
+           
+            let position = GMSCameraPosition(target: coordinates, zoom: 18)
+            mapView?.animate(to: position)
+        }
+        func stopLocation(){
+            mapViewModel.locationManager.stopUpdatingLocation()
+            trackLocation = false
+        }
+        
+        func startLocation(){
+            mapViewModel.locationManager.startUpdatingLocation()
+            trackLocation = true
+        }
+        private func clearRoute(model: MapViewModel) {
+            model.route.map = nil
+            model.route = GMSPolyline()
+            model.routePath = GMSMutablePath()
+            model.route.map = mapView
+        }
+        
+        private func startNewTrack(model: MapViewModel) {
+            if let mapView = self.mapView {
+                mapView.clear()
+            }
+            clearRoute(model: model)
+            
+            model.route.strokeColor = .white
+            model.route.strokeWidth = 3
+            
+            model.routePath = GMSMutablePath()
+            model.route.map = mapView
+        }
+        private func finishTrack(model: MapViewModel) {
+            do {
+                try dataBase.deletePath(name: dataBase.defaultPathName)
+                guard let routePath = model.route.path else { return }
+                for i in 0..<routePath.count() {
+                    let coordinate = routePath.coordinate(at: i)
+                    try dataBase.addPoint(path: dataBase.defaultPathName, coordinate: coordinate)
+                }
+                print("Save path to DataBase completed")
+            } catch {
+                print("Error occurred: \(error)")
+            }
+        }
+
+        
+        private func showCurrentPath(model: MapViewModel) {
+            do {
+                let currentPath = try dataBase.loadPath(name: dataBase.defaultPathName)
+                for coord in currentPath {
+                    addPointToTrack(at: coord, model: model)
+                }
+                let bounds = GMSCoordinateBounds(path: model.routePath)
+                mapView?.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 50.0))
+            } catch {
+                print("Error occurred in showPreviuosPath: \(error)")
+            }
+        }
+        private func addPointToTrack(at coordinate: CLLocationCoordinate2D, model: MapViewModel) {
+            model.routePath.add(coordinate)
+            model.route.path = model.routePath
+        }
+        //MARK: - GMSMapViewDelegate methods
+        func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+            let manualMarker = GMSMarker(position: coordinate)
+            manualMarker.map = self.mapView
+            let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            
+            let geoCoder = CLGeocoder()
+            geoCoder.reverseGeocodeLocation(location) { places, error in
+                print(places?.last)
+            }
+        }
+        //MARK: - CLLocationManagerDelegate metods
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            guard let location = locations.last else { return }
+            if trackLocation {
+                addPointToTrack(at: location.coordinate, model: mapViewModel)
+                let position = GMSCameraPosition(target: location.coordinate, zoom: 15)
+                mapView?.animate(to: position)
+            }
+            mapViewModel.userCoordinates = location.coordinate
+        }
+    }
+}
+extension MapView {
+    //MARK: - Buttons
+    func setupButtons(_ uiView: GMSMapView, context: Context) {
+     
+        // addMarkerButton
+        let addMarkerButton = RoundedButton(title: "Add mark")
+        addMarkerButton.addTarget(context.coordinator, action: #selector(Coordinator.addMarkerTap(_:)), for: .touchUpInside)
+        uiView.addSubview(addMarkerButton)
+        // updateLocationButton
+        let trackUserLocationButton = RoundedButton(title: "Start")
+        trackUserLocationButton.addTarget(context.coordinator, action: #selector(Coordinator.trackUserLocationTap(_:)), for: .touchUpInside)
+        uiView.addSubview(trackUserLocationButton)
+        // checkLocationButton
+        let checkLocationButton = RoundedButton(title: "My location")
+        checkLocationButton.addTarget(context.coordinator, action: #selector(Coordinator.showCurrentLocationTap(_:)), for: .touchUpInside)
+        uiView.addSubview(checkLocationButton)
+        
+        let widthButton: CGFloat = 150
+        let heightButton: CGFloat = 40
+        NSLayoutConstraint.activate([
+            /// addMarkerButton
+            addMarkerButton.widthAnchor.constraint(equalToConstant: widthButton),
+            addMarkerButton.heightAnchor.constraint(equalToConstant: heightButton),
+            addMarkerButton.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -10),
+            addMarkerButton.topAnchor.constraint(equalTo: uiView.topAnchor, constant: 10),
+            
+            /// updateLocationButton
+            trackUserLocationButton.widthAnchor.constraint(equalToConstant: widthButton),
+            trackUserLocationButton.heightAnchor.constraint(equalToConstant: heightButton),
+            trackUserLocationButton.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -10),
+            trackUserLocationButton.topAnchor.constraint(equalTo: addMarkerButton.bottomAnchor, constant: 5),
+            
+            /// checkLocationButton
+            checkLocationButton.widthAnchor.constraint(equalToConstant: widthButton),
+            checkLocationButton.heightAnchor.constraint(equalToConstant: heightButton),
+            checkLocationButton.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -10),
+            checkLocationButton.topAnchor.constraint(equalTo: trackUserLocationButton.bottomAnchor, constant: 5),
+        ])
+    }
+}
+
+//struct MapView: UIViewRepresentable {
+//    //MARK: - Properties
+//    @ObservedObject var mapViewModel = MapViewModel()
+//    var mapStyleSettings = MapStyle()
+//    /// coordinator
+//    func makeCoordinator() -> Coordinator {
+//        return Coordinator( mapViewModel: mapViewModel)
+//    }
+//
+//    //MARK: - make UI components
+//    func makeUIView(context: Context) -> GMSMapView {
+//        let initialCamera = checkCameraPosition()
+//        let mapView = GMSMapView(frame: .zero, camera: initialCamera)
+//        setupButtons(mapView, context: context)
+////        let style = MapStyle.getStyleJSON()
+////        do {
+////            mapView.mapStyle = try GMSMapStyle(jsonString: style)
+////        } catch {
+////            print(error)
+////        }
+//
+//        ///CLLocationManager
+//        configureLocationManager(context: context)
+//        mapView.delegate = context.coordinator
+//        context.coordinator.mapView = mapView
+//
+//        return mapView
+//    }
+//    //MARK: - Update UI components
+//    func updateUIView(_ uiView: GMSMapView, context: Context) {}
+//    //MARK: - Metods
+//    func checkCameraPosition() -> GMSCameraPosition {
+//        if let coordinates = mapViewModel.coordinates {
+//            return GMSCameraPosition.camera(withTarget: coordinates, zoom: 12.0)
+//        } else {
+//            return GMSCameraPosition.camera(withLatitude: 37.34033264974476, longitude: -122.06892632102273, zoom: 12.0)
+//        }
+//    }
+//    private func configureLocationManager(context: Context) {
+//        let locationManager = CLLocationManager()
+//        locationManager.delegate = context.coordinator
+//        ///user permission to track location
+//        if locationManager.authorizationStatus == .notDetermined {
+//            locationManager.requestWhenInUseAuthorization()
+//        }
+//        ///get user coordinates in BackgroundMode
+//        locationManager.allowsBackgroundLocationUpdates = true
+//        locationManager.pausesLocationUpdatesAutomatically = false
+//        locationManager.startMonitoringSignificantLocationChanges()
+//        locationManager.requestAlwaysAuthorization()
+//        mapViewModel.locationManager = locationManager
+//    }
+//}
+////MARK: - Coordinator
+//extension MapView {
+//    class Coordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
+//        //MARK: - Properties
+//        var mapViewModel: MapViewModel
+//        var mapView: GMSMapView?
+//
+//        //MARK: - Life cicle
+//        init(mapViewModel: MapViewModel) {
+//            self.mapViewModel = mapViewModel
+//        }
+//        //MARK: - Action
+//        @objc func addMarkerTap(_ sender: UIButton) {
+//            if mapViewModel.marker == nil {
+//                guard let mapView = sender.superview as? GMSMapView else { return }
+//                mapViewModel.addMarker(mapView: mapView)
+//            } else {
+//                mapViewModel.removeMarker()
+//            }
+//        }
+//        @objc func updateLocation(_ sender: UIButton) {
+//            guard let mapView = sender.superview as? GMSMapView else { return }
+//            guard let lastLocation = mapViewModel.locationManager?.location else { return }
+//            mapViewModel.updateLocation(mapView: mapView, newLocation: lastLocation)
+//        }
+//
+//        @objc func trackUserLocationTap(_ sender: UIButton) {
+//            //                    if trackLocation {
+//            //                        //трек не заканчивается, проверить метод
+//            //                        finishTrack(model: mapViewModel)
+//            //                        stopLocation()
+//            //                    } else {
+//            //                        startLocation()
+//            //                        startNewTrack(model: mapViewModel)
+//            //                        showPreviuosPath(model: mapViewModel)
+//            //                    }
+//        }
+//        @objc func showTrackTap(_ sender: UIButton) {
+//            //                    if !trackLocation {
+//            //                        showPreviuosPath(model: mapViewModel)
+//            //                    } else {
+//            //                        showOkCancel()
+//            //                    }
+//        }
+//        //MARK: - GMSMapViewDelegate methods
+//        func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+//            let manualMarker = GMSMarker(position: coordinate)
+//            manualMarker.map = self.mapView
+//            let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+//
+//            let geoCoder = CLGeocoder()
+//            geoCoder.reverseGeocodeLocation(location) { places, error in
+//                print(places?.last)
+//            }
+//        }
+//        //MARK: - CLLocationManagerDelegate metods
+//        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//            guard let location = locations.last else { return }
+//            guard let mapView = mapView else { return }
+//            mapViewModel.updatePath(with: location, mapView: mapView)
+//            mapViewModel.coordinates = location.coordinate
+//
+//            let position = GMSCameraPosition(target: location.coordinate, zoom: 15)
+//            mapView.animate(to: position)
+//        }
+//    }
+//}
+//extension MapView {
+//    //MARK: - Buttons
+//    func setupButtons(_ uiView: GMSMapView, context: Context) {
+//        // addMarkerButton
+//        let addMarkerButton = RoundedButton(title: "Add mark")
+//        addMarkerButton.addTarget(context.coordinator, action: #selector(Coordinator.addMarkerTap(_:)), for: .touchUpInside)
+//        uiView.addSubview(addMarkerButton)
+//        // updateLocationButton
+//        //TODO: - не меняется кнопка, не очищается предыдущий путь, не приближается камера
+//        let trackUserLocationButton = RoundedButton(title: "Start tracking")
+//        trackUserLocationButton.addTarget(context.coordinator, action: #selector(Coordinator.trackUserLocationTap(_:)), for: .touchUpInside)
+//        uiView.addSubview(trackUserLocationButton)
+//        // checkLocationButton
+//        let checkLocationButton = RoundedButton(title: "My location")
+//        checkLocationButton.addTarget(context.coordinator, action: #selector(Coordinator.showTrackTap(_:)), for: .touchUpInside)
+//        uiView.addSubview(checkLocationButton)
+//
+//        let widthButton: CGFloat = 150
+//        let heightButton: CGFloat = 40
+//        NSLayoutConstraint.activate([
+//            /// addMarkerButton
+//            addMarkerButton.widthAnchor.constraint(equalToConstant: widthButton),
+//            addMarkerButton.heightAnchor.constraint(equalToConstant: heightButton),
+//            addMarkerButton.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -10),
+//            addMarkerButton.topAnchor.constraint(equalTo: uiView.topAnchor, constant: 10),
+//
+//            /// updateLocationButton
+//            trackUserLocationButton.widthAnchor.constraint(equalToConstant: widthButton),
+//            trackUserLocationButton.heightAnchor.constraint(equalToConstant: heightButton),
+//            trackUserLocationButton.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -10),
+//            trackUserLocationButton.topAnchor.constraint(equalTo: addMarkerButton.bottomAnchor, constant: 5),
+//
+//            /// checkLocationButton
+//            checkLocationButton.widthAnchor.constraint(equalToConstant: widthButton),
+//            checkLocationButton.heightAnchor.constraint(equalToConstant: heightButton),
+//            checkLocationButton.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -10),
+//            checkLocationButton.topAnchor.constraint(equalTo: trackUserLocationButton.bottomAnchor, constant: 5),
+//        ])
+//    }
+//}
