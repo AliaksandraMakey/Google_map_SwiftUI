@@ -12,7 +12,7 @@ import RealmSwift
 @main
 struct Google_map_SwiftUIApp: SwiftUI.App {
     init() {
-        GMSServices.provideAPIKey("key")
+        GMSServices.provideAPIKey("AIzaSyBWtKY9fFUzDyBKR5U0HTjT7JEB3mJIeKQ")
 #if DEBUG
         print(Realm.Configuration.defaultConfiguration.fileURL ?? "Realm eror")
 #endif
@@ -24,3 +24,4 @@ struct Google_map_SwiftUIApp: SwiftUI.App {
         }
     }
 }
+
