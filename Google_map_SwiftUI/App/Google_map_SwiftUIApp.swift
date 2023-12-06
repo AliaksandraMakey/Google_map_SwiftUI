@@ -11,6 +11,7 @@ import RealmSwift
 
 @main
 struct Google_map_SwiftUIApp: SwiftUI.App {
+
     init() {
         GMSServices.provideAPIKey("AIzaSyBWtKY9fFUzDyBKR5U0HTjT7JEB3mJIeKQ")
 #if DEBUG
@@ -24,4 +25,5 @@ struct Google_map_SwiftUIApp: SwiftUI.App {
         }
     }
 }
+
 

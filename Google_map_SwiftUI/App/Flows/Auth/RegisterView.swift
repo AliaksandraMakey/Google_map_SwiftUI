@@ -11,37 +11,40 @@ struct RegisterView: View {
     //MARK: - Properties
     @State private var loginName: String = ""
     @State private var password: String = ""
-//    @State private var isRegistered: Bool = false
     var alerts = Alerts()
+    @ObservedObject var appStateManager = AppStateManager()
     //MARK: - Show view
     @State private var showAlert = false
     
     var body: some View {
-        VStack {
-            TextField("Username", text: $loginName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-              
-            Button("Register") {
-                UserManager.instance.saveUser(login: loginName, password: password)
-                self.showAlert.toggle()
-//                isRegistered = true
+        ZStack {
+            VStack(spacing: 16) {
+                TextField("Username", text: $loginName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                SecureField("Password", text: $password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Button("Register") {
+                    UserManager.instance.saveUser(login: loginName, password: password)
+                    self.showAlert.toggle()
+                }
+                .disabled(loginName.isEmpty || password.isEmpty)
             }
-            .disabled(loginName.isEmpty || password.isEmpty)
+            .padding()
+        
+            //MARK: - Blur Effect
+            if appStateManager.isBlurred {
+                VisualEffectView(style: .extraLight)
+                    .edgesIgnoringSafeArea(.all)
+            }
         }
-        .padding()
         //MARK: - Presenters
         .alert(isPresented: $showAlert) {
             self.alerts.registerSuccessAlert(login: loginName)
         }
-        .padding()
     }
 }
-
-//    struct RegisterView_Previews: PreviewProvider {
-//        static var previews: some View {
-//            RegisterView()
-//        }
-//    }
+//#Preview {
+//    RegisterView()
+//}
