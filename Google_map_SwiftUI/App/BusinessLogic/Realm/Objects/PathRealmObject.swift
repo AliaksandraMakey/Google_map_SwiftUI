@@ -9,6 +9,7 @@ import RealmSwift
 import CoreLocation
 
 class PathRealmObject: Object {
+    //MARK: - Properties
     @objc dynamic var name = ""
     @objc dynamic var created = NSDate()
     let path = List<LocationRealmObject>()

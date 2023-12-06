@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8506BC7B2B1DF8EC0058D1D4 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506BC7A2B1DF8EC0058D1D4 /* UserManager.swift */; };
+		8506BC7D2B1DFAF50058D1D4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506BC7C2B1DFAF50058D1D4 /* LoginView.swift */; };
+		8506BC8A2B1E0A4D0058D1D4 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506BC892B1E0A4D0058D1D4 /* Alerts.swift */; };
+		8506BC8C2B1E1D910058D1D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506BC8B2B1E1D910058D1D4 /* LoginViewModel.swift */; };
+		8506BC8E2B1E1DB20058D1D4 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506BC8D2B1E1DB20058D1D4 /* ForgotPasswordView.swift */; };
+		8506BC912B1E23800058D1D4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506BC902B1E23800058D1D4 /* MainView.swift */; };
 		8511E72B2B04A4EC0092042A /* Google_map_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511E72A2B04A4EC0092042A /* Google_map_SwiftUIApp.swift */; };
 		8511E72D2B04A4EC0092042A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511E72C2B04A4EC0092042A /* ContentView.swift */; };
 		8511E72F2B04A4ED0092042A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8511E72E2B04A4ED0092042A /* Assets.xcassets */; };
@@ -16,6 +22,10 @@
 		8526F9C22B0688F000F1431F /* MapStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8526F9C12B0688F000F1431F /* MapStyle.swift */; };
 		852C3B992B0762160026ED2B /* MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3B982B0762160026ED2B /* MapError.swift */; };
 		852C3BA22B07A19A0026ED2B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3BA12B07A19A0026ED2B /* CustomButton.swift */; };
+		858A59902B203F24001643C7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A598F2B203F24001643C7 /* RegisterView.swift */; };
+		858A599D2B2051E0001643C7 /* DataBaseAuthProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A599C2B2051E0001643C7 /* DataBaseAuthProtocol.swift */; };
+		858A599F2B20520C001643C7 /* UserRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A599E2B20520C001643C7 /* UserRealmObject.swift */; };
+		858A59A12B20521D001643C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A59A02B20521D001643C7 /* User.swift */; };
 		85A27A772B0FAF850066DA0F /* DataBaseLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A762B0FAF850066DA0F /* DataBaseLocationProtocol.swift */; };
 		85A27A792B0FAF910066DA0F /* PathRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A782B0FAF910066DA0F /* PathRealmObject.swift */; };
 		85A27A7B2B0FAF9C0066DA0F /* LocationRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A7A2B0FAF9C0066DA0F /* LocationRealmObject.swift */; };
@@ -26,6 +36,12 @@
 
 /* Begin PBXFileReference section */
 		04FD1CAE479CF2642A1418CF /* Pods-Google_map_SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Google_map_SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Google_map_SwiftUI/Pods-Google_map_SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
+		8506BC7A2B1DF8EC0058D1D4 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		8506BC7C2B1DFAF50058D1D4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8506BC892B1E0A4D0058D1D4 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		8506BC8B2B1E1D910058D1D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		8506BC8D2B1E1DB20058D1D4 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		8506BC902B1E23800058D1D4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8511E7272B04A4EC0092042A /* Google_map_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Google_map_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8511E72A2B04A4EC0092042A /* Google_map_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Google_map_SwiftUIApp.swift; sourceTree = "<group>"; };
 		8511E72C2B04A4EC0092042A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +53,10 @@
 		8526F9C12B0688F000F1431F /* MapStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStyle.swift; sourceTree = "<group>"; };
 		852C3B982B0762160026ED2B /* MapError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapError.swift; sourceTree = "<group>"; };
 		852C3BA12B07A19A0026ED2B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		858A598F2B203F24001643C7 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		858A599C2B2051E0001643C7 /* DataBaseAuthProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseAuthProtocol.swift; sourceTree = "<group>"; };
+		858A599E2B20520C001643C7 /* UserRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmObject.swift; sourceTree = "<group>"; };
+		858A59A02B20521D001643C7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85A27A762B0FAF850066DA0F /* DataBaseLocationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseLocationProtocol.swift; sourceTree = "<group>"; };
 		85A27A782B0FAF910066DA0F /* PathRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathRealmObject.swift; sourceTree = "<group>"; };
 		85A27A7A2B0FAF9C0066DA0F /* LocationRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRealmObject.swift; sourceTree = "<group>"; };
@@ -67,13 +87,48 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8506BC782B1DF8A50058D1D4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				8506BC7A2B1DF8EC0058D1D4 /* UserManager.swift */,
+				858A59A02B20521D001643C7 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		8506BC792B1DF8AD0058D1D4 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				8506BC7C2B1DFAF50058D1D4 /* LoginView.swift */,
+				858A598F2B203F24001643C7 /* RegisterView.swift */,
+				8506BC8D2B1E1DB20058D1D4 /* ForgotPasswordView.swift */,
+				8506BC8B2B1E1D910058D1D4 /* LoginViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		8506BC882B1E0A3B0058D1D4 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				8506BC892B1E0A4D0058D1D4 /* Alerts.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		8506BC8F2B1E23790058D1D4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8506BC902B1E23800058D1D4 /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		850F51692B0F5E8E0091405E /* App */ = {
 			isa = PBXGroup;
 			children = (
 				8511E72A2B04A4EC0092042A /* Google_map_SwiftUIApp.swift */,
 				8511E72C2B04A4EC0092042A /* ContentView.swift */,
 				85A27A742B0FAF5F0066DA0F /* BusinessLogic */,
-				8511E73C2B04BA550092042A /* Entity */,
 				852C3B9A2B0762970026ED2B /* Error */,
 				852C3B9C2B07630B0026ED2B /* Flows */,
 			);
@@ -137,17 +192,10 @@
 		8511E7382B04A8210092042A /* MapView */ = {
 			isa = PBXGroup;
 			children = (
+				8511E73D2B04BA5D0092042A /* MapViewModel.swift */,
 				8511E7392B04A8350092042A /* MapView.swift */,
 			);
 			path = MapView;
-			sourceTree = "<group>";
-		};
-		8511E73C2B04BA550092042A /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				8511E73D2B04BA5D0092042A /* MapViewModel.swift */,
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		852C3B9A2B0762970026ED2B /* Error */ = {
@@ -169,10 +217,33 @@
 		852C3B9C2B07630B0026ED2B /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				850F516B2B0F60B40091405E /* Custom */,
+				8506BC792B1DF8AD0058D1D4 /* Auth */,
+				8506BC8F2B1E23790058D1D4 /* Main */,
 				8511E7382B04A8210092042A /* MapView */,
+				8506BC882B1E0A3B0058D1D4 /* Alert */,
+				8506BC782B1DF8A50058D1D4 /* User */,
+				850F516B2B0F60B40091405E /* Custom */,
 			);
 			path = Flows;
+			sourceTree = "<group>";
+		};
+		858A599A2B205199001643C7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				85A27A762B0FAF850066DA0F /* DataBaseLocationProtocol.swift */,
+				858A599C2B2051E0001643C7 /* DataBaseAuthProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		858A599B2B20519E001643C7 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				858A599E2B20520C001643C7 /* UserRealmObject.swift */,
+				85A27A7A2B0FAF9C0066DA0F /* LocationRealmObject.swift */,
+				85A27A782B0FAF910066DA0F /* PathRealmObject.swift */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 		85A27A742B0FAF5F0066DA0F /* BusinessLogic */ = {
@@ -186,11 +257,10 @@
 		85A27A752B0FAF6E0066DA0F /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				85A27A762B0FAF850066DA0F /* DataBaseLocationProtocol.swift */,
-				85A27A782B0FAF910066DA0F /* PathRealmObject.swift */,
-				85A27A7A2B0FAF9C0066DA0F /* LocationRealmObject.swift */,
-				85A27A7C2B0FAFA60066DA0F /* RealmServise.swift */,
 				85A27A7E2B0FAFB40066DA0F /* RealmError.swift */,
+				85A27A7C2B0FAFA60066DA0F /* RealmServise.swift */,
+				858A599B2B20519E001643C7 /* Objects */,
+				858A599A2B205199001643C7 /* Protocols */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -338,15 +408,25 @@
 				8511E72D2B04A4EC0092042A /* ContentView.swift in Sources */,
 				85A27A772B0FAF850066DA0F /* DataBaseLocationProtocol.swift in Sources */,
 				85A27A7F2B0FAFB40066DA0F /* RealmError.swift in Sources */,
+				8506BC7B2B1DF8EC0058D1D4 /* UserManager.swift in Sources */,
 				8511E73A2B04A8350092042A /* MapView.swift in Sources */,
+				8506BC912B1E23800058D1D4 /* MainView.swift in Sources */,
 				8511E72B2B04A4EC0092042A /* Google_map_SwiftUIApp.swift in Sources */,
 				8511E73E2B04BA5D0092042A /* MapViewModel.swift in Sources */,
+				858A59902B203F24001643C7 /* RegisterView.swift in Sources */,
+				8506BC8E2B1E1DB20058D1D4 /* ForgotPasswordView.swift in Sources */,
+				858A59A12B20521D001643C7 /* User.swift in Sources */,
+				858A599D2B2051E0001643C7 /* DataBaseAuthProtocol.swift in Sources */,
 				85A27A7B2B0FAF9C0066DA0F /* LocationRealmObject.swift in Sources */,
+				8506BC7D2B1DFAF50058D1D4 /* LoginView.swift in Sources */,
+				8506BC8C2B1E1D910058D1D4 /* LoginViewModel.swift in Sources */,
 				85A27A7D2B0FAFA60066DA0F /* RealmServise.swift in Sources */,
 				852C3BA22B07A19A0026ED2B /* CustomButton.swift in Sources */,
 				8526F9C22B0688F000F1431F /* MapStyle.swift in Sources */,
 				852C3B992B0762160026ED2B /* MapError.swift in Sources */,
+				8506BC8A2B1E0A4D0058D1D4 /* Alerts.swift in Sources */,
 				85A27A792B0FAF910066DA0F /* PathRealmObject.swift in Sources */,
+				858A599F2B20520C001643C7 /* UserRealmObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
