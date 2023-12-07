@@ -26,6 +26,8 @@
 		858A599D2B2051E0001643C7 /* DataBaseAuthProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A599C2B2051E0001643C7 /* DataBaseAuthProtocol.swift */; };
 		858A599F2B20520C001643C7 /* UserRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A599E2B20520C001643C7 /* UserRealmObject.swift */; };
 		858A59A12B20521D001643C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A59A02B20521D001643C7 /* User.swift */; };
+		858A59A62B20B96C001643C7 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A59A52B20B96C001643C7 /* VisualEffectView.swift */; };
+		858A59A82B20BAD5001643C7 /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A59A72B20BAD5001643C7 /* AppStateManager.swift */; };
 		85A27A772B0FAF850066DA0F /* DataBaseLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A762B0FAF850066DA0F /* DataBaseLocationProtocol.swift */; };
 		85A27A792B0FAF910066DA0F /* PathRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A782B0FAF910066DA0F /* PathRealmObject.swift */; };
 		85A27A7B2B0FAF9C0066DA0F /* LocationRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A27A7A2B0FAF9C0066DA0F /* LocationRealmObject.swift */; };
@@ -57,6 +59,8 @@
 		858A599C2B2051E0001643C7 /* DataBaseAuthProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseAuthProtocol.swift; sourceTree = "<group>"; };
 		858A599E2B20520C001643C7 /* UserRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmObject.swift; sourceTree = "<group>"; };
 		858A59A02B20521D001643C7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		858A59A52B20B96C001643C7 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		858A59A72B20BAD5001643C7 /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
 		85A27A762B0FAF850066DA0F /* DataBaseLocationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseLocationProtocol.swift; sourceTree = "<group>"; };
 		85A27A782B0FAF910066DA0F /* PathRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathRealmObject.swift; sourceTree = "<group>"; };
 		85A27A7A2B0FAF9C0066DA0F /* LocationRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRealmObject.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				852C3BA12B07A19A0026ED2B /* CustomButton.swift */,
+				858A59A52B20B96C001643C7 /* VisualEffectView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				8526F9C12B0688F000F1431F /* MapStyle.swift */,
+				858A59A72B20BAD5001643C7 /* AppStateManager.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 				858A59A12B20521D001643C7 /* User.swift in Sources */,
 				858A599D2B2051E0001643C7 /* DataBaseAuthProtocol.swift in Sources */,
 				85A27A7B2B0FAF9C0066DA0F /* LocationRealmObject.swift in Sources */,
+				858A59A82B20BAD5001643C7 /* AppStateManager.swift in Sources */,
 				8506BC7D2B1DFAF50058D1D4 /* LoginView.swift in Sources */,
 				8506BC8C2B1E1D910058D1D4 /* LoginViewModel.swift in Sources */,
 				85A27A7D2B0FAFA60066DA0F /* RealmServise.swift in Sources */,
@@ -426,6 +433,7 @@
 				852C3B992B0762160026ED2B /* MapError.swift in Sources */,
 				8506BC8A2B1E0A4D0058D1D4 /* Alerts.swift in Sources */,
 				85A27A792B0FAF910066DA0F /* PathRealmObject.swift in Sources */,
+				858A59A62B20B96C001643C7 /* VisualEffectView.swift in Sources */,
 				858A599F2B20520C001643C7 /* UserRealmObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var appStateManager = AppStateManager()
+    
     var body: some View {
-        VStack {
+        ZStack {
             LoginView()
-
+            //MARK: - Blur Effect
+            if appStateManager.isBlurred {
+                VisualEffectView(style: .extraLight)
+                    .edgesIgnoringSafeArea(.all)
+            }
         }
+    
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}
+
