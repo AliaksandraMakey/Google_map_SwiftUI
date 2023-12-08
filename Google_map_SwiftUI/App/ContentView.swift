@@ -13,6 +13,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             LoginView()
+//            MainView()
             //MARK: - Blur Effect
             if appStateManager.isBlurred {
                 VisualEffectView(style: .extraLight)

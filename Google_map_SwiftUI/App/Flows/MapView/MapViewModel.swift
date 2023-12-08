@@ -12,26 +12,25 @@ import GoogleMaps
 ////MARK: - View Model
 final class MapViewModel: ObservableObject {
     //MARK: - Properties
-    @Published var userCoordinates: CLLocationCoordinate2D?
+    var userCoordinates = CLLocationCoordinate2D(latitude: 37.34033264974476, longitude: -122.06892632102273)
+    @Published var currentLocation: CLLocationCoordinate2D?
      var marker: GMSMarker?
     var geoCoder: CLGeocoder?
     lazy var route = GMSPolyline()
     lazy var routePath = GMSMutablePath()
-    lazy var locationManager = CLLocationManager()
+    let locationManager = LocationManager.instance
+    
     var mapStyleSettings = MapStyle()
 
     //MARK: - Metods
     func addMarker(mapView: GMSMapView, title: String = "", snippet: String = "") -> Result<Void, MapError> {
-        guard let coordinates = userCoordinates else {
-            return .failure(.invalidCoordinates)
-        }
         if marker == nil {
-            let marker = GMSMarker.init(position: coordinates)
+            let marker = GMSMarker.init(position: userCoordinates)
             marker.icon = GMSMarker.markerImage(with: .red)
             marker.title = title
             marker.snippet = snippet
             marker.map = mapView
-            mapView.animate(toLocation: coordinates)
+            mapView.animate(toLocation: userCoordinates)
         } else {
             removeMarker()
         }
