@@ -10,18 +10,20 @@ import SwiftUI
 
 struct ForgotPasswordView: View {
     //MARK: - Properties
-    @StateObject var viewModel = LoginViewModel()
+    @ObservedObject var viewModel = LoginViewModel()
     @ObservedObject var appStateManager = AppStateManager()
+    @State private var login: String = ""
     //MARK: - Show view
     @State private var showAlert = false
     
        var body: some View {
         ZStack {
             VStack(spacing: 16) {
-                TextField("Login", text: .constant(viewModel.login))
+                TextField("Login", text:  $login)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button("Show password") {
+                    viewModel.login = login
                     self.showAlert.toggle()
                 }
             }

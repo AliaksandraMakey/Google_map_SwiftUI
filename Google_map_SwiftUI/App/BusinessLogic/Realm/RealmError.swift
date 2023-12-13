@@ -13,7 +13,7 @@ enum RealmError: Error {
     case readError(description: String)
     case deleteError(description: String)
     case pathNotFound
-
+    //MARK: - Properties
     var description: String {
         switch self {
         case .databaseAccessError(let error):

@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    //MARK: - Properties
     @ObservedObject var appStateManager = AppStateManager()
+    @EnvironmentObject var notifications: Notifications
     
     var body: some View {
         ZStack {
             LoginView()
+                .onAppear {
+                    notifications.scheduleNotification()
+                }
             //MARK: - Blur Effect
             if appStateManager.isBlurred {
                 VisualEffectView(style: .extraLight)
                     .edgesIgnoringSafeArea(.all)
             }
         }
-    
+
     }
 }
 

@@ -7,11 +7,13 @@
 
 import SwiftUI
 import GoogleMaps
+import RxSwift
 
 struct MapView: UIViewRepresentable {
     //MARK: - Properties
     @ObservedObject var mapViewModel = MapViewModel()
     var coordinator: Coordinator
+    private let disposeBag = DisposeBag()
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
@@ -31,7 +33,7 @@ struct MapView: UIViewRepresentable {
         mapViewModel.mapStyleSettings.configureMapStyle(mapView)
         
         ///CLLocationManager
-        configureLocationManager(context: context)
+        configureLocationManager()
         mapView.delegate = context.coordinator
         context.coordinator.mapView = mapView
         
@@ -41,26 +43,41 @@ struct MapView: UIViewRepresentable {
     func updateUIView(_ uiView: GMSMapView, context: Context) {}
     //MARK: - Metods
     func checkCameraPosition() -> GMSCameraPosition {
-        if let coordinates = mapViewModel.userCoordinates {
+         let coordinates = mapViewModel.userCoordinates
             return GMSCameraPosition.camera(withTarget: coordinates, zoom: 12.0)
-        } else {
-            return GMSCameraPosition.camera(withLatitude: 37.34033264974476, longitude: -122.06892632102273, zoom: 12.0)
-        }
     }
-    private func configureLocationManager(context: Context) {
-        let locationManager = CLLocationManager()
-        locationManager.delegate = context.coordinator
-        ///user permission to track location
-        if locationManager.authorizationStatus == .notDetermined {
-            locationManager.requestWhenInUseAuthorization()
-        }
-        ///get user coordinates in BackgroundMode
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.startMonitoringSignificantLocationChanges()
-        locationManager.requestAlwaysAuthorization()
-        mapViewModel.locationManager = locationManager
+    private func configureLocationManager() {
+        var locationManager = mapViewModel.locationManager
+        locationManager
+            .authorithationStatus
+            .bind { status in
+                self.checkLocationStatus(status: status)
+                }
+            .disposed(by: disposeBag)
+
+        locationManager
+            .location
+            .bind {  location in
+                print("Location \(location)")
+                coordinator.updateTrack(location: location)
+                mapViewModel.currentLocation = location
+            }
+            .disposed(by: disposeBag)
     }
+    private func checkLocationStatus(status: CLAuthorizationStatus) {
+           print("Location status \(status)")
+           switch status {
+           case .notDetermined:
+               mapViewModel.locationManager.requestAuthorithation()
+           case .restricted, .denied:
+               print("Location access denied")
+           case .authorizedAlways, .authorizedWhenInUse:
+               break
+           @unknown default:
+               break
+           }
+
+       }
 }
 //MARK: - Coordinator
 extension MapView {
@@ -97,7 +114,7 @@ extension MapView {
             }
         }
         @objc func showCurrentLocationTap(_ sender: UIButton) {
-            guard let coordinates = mapViewModel.userCoordinates else {return}
+             let coordinates = mapViewModel.userCoordinates
            
             let position = GMSCameraPosition(target: coordinates, zoom: 18)
             mapView?.animate(to: position)
@@ -172,6 +189,18 @@ extension MapView {
             let geoCoder = CLGeocoder()
             geoCoder.reverseGeocodeLocation(location) { places, error in
                 print(places?.last)
+            }
+        }
+         func updateTrack(location: CLLocationCoordinate2D) {
+            if trackLocation {
+                addPointToTrack(at: location, model: mapViewModel)
+                let camera = GMSCameraPosition.camera(withTarget: location, zoom: 15)
+                if let mapView = self.mapView {
+                    mapView.animate(to: camera)
+                    mapView.camera = camera
+                } else {
+                    print("Can't update track")
+                }
             }
         }
         //MARK: - CLLocationManagerDelegate metods
