@@ -55,154 +55,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0"
+            uuid = "7AEC0306-6465-4723-AD1E-26CAFCD60169"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Google_map_SwiftUI/App/Flows/Auth/LoginViewModel.swift"
+            filePath = "Google_map_SwiftUI/App/Flows/Auth/LoginView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "LoginViewModel"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0 - 7d60184bd5af2348"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "property wrapper backing initializer of Google_map_SwiftUI.LoginViewModel.login : Swift.String"
-                  moduleName = "Google_map_SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/Google_map_SwiftUI/App/Flows/Auth/LoginViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "41">
-               </Location>
-               <Location
-                  uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0 - 2b89b5dd10f2dd9e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Google_map_SwiftUI.LoginViewModel.login.getter : Swift.String"
-                  moduleName = "Google_map_SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/Google_map_SwiftUI/App/Flows/Auth/LoginViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "23">
-               </Location>
-               <Location
-                  uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0 - df3f76e019d9eb0e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Google_map_SwiftUI.LoginViewModel.login.setter : Swift.String"
-                  moduleName = "Google_map_SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/Google_map_SwiftUI/App/Flows/Auth/LoginViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0 - fc39c950ff018f3f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Google_map_SwiftUI.LoginViewModel.login.modify : Swift.String"
-                  moduleName = "Google_map_SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/Google_map_SwiftUI/App/Flows/Auth/LoginViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0 - 80c30a83e04ddf9b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Google_map_SwiftUI.LoginViewModel.login.modify : Swift.String with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "Google_map_SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/%3Ccompiler-generated%3E"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "18">
-               </Location>
-               <Location
-                  uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0 - aa52638b75899161"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Google_map_SwiftUI.LoginViewModel.$login.getter : Combine.Published&lt;Swift.String&gt;.Publisher"
-                  moduleName = "Google_map_SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/Google_map_SwiftUI/App/Flows/Auth/LoginViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0 - aee49ff7eb38f5f8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Google_map_SwiftUI.LoginViewModel.$login.setter : Combine.Published&lt;Swift.String&gt;.Publisher"
-                  moduleName = "Google_map_SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/%3Ccompiler-generated%3E"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "30">
-               </Location>
-               <Location
-                  uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0 - 2252830d176904f7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Google_map_SwiftUI.LoginViewModel.$login.modify : Combine.Published&lt;Swift.String&gt;.Publisher"
-                  moduleName = "Google_map_SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/%3Ccompiler-generated%3E"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  uuid = "4A7588E3-62E3-4E01-91E0-F0030F2BAFC0 - 9e23c45e88314e02"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Google_map_SwiftUI.LoginViewModel.$login.modify : Combine.Published&lt;Swift.String&gt;.Publisher with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "Google_map_SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/%3Ccompiler-generated%3E"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "547F01EF-2A75-430C-92F5-193D752DE13D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Google_map_SwiftUI/App/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
