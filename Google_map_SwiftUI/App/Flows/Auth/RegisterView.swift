@@ -37,7 +37,6 @@ struct RegisterView: View {
                 .disabled(!isLoginValid)
             }
             .padding()
-        
             //MARK: - Blur Effect
             if appStateManager.isBlurred {
                 VisualEffectView(style: .extraLight)

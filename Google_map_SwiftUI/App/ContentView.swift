@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     //MARK: - Properties
     @ObservedObject var appStateManager = AppStateManager()
-    @EnvironmentObject var notifications: Notifications
+    @EnvironmentObject var notifications: NotificationManager
     
     var body: some View {
         ZStack {

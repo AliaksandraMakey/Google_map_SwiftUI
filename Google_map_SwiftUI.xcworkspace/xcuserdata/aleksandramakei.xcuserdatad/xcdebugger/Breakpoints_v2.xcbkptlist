@@ -49,6 +49,21 @@
                   endingLineNumber = "39"
                   offsetFromSymbolStart = "29">
                </Location>
+               <Location
+                  uuid = "32241A5E-BD5E-4D26-B218-11F10B3BB52B - 33af1b836218848b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; SwiftUI.Alert in Google_map_SwiftUI.ForgotPasswordView.body.getter : some"
+                  moduleName = "Google_map_SwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksandramakei/Projects/Google_map_SwiftUI/Google_map_SwiftUI/App/Flows/Auth/ForgotPasswordView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "36">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -64,22 +79,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "547F01EF-2A75-430C-92F5-193D752DE13D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Google_map_SwiftUI/App/ContentView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
