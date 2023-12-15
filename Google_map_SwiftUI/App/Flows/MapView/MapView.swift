@@ -31,7 +31,7 @@ struct MapView: UIViewRepresentable {
         mapView.settings.myLocationButton = true
         setupButtons(mapView, context: context)
         mapViewModel.mapStyleSettings.configureMapStyle(mapView)
-        
+     
         ///CLLocationManager
         configureLocationManager()
         mapView.delegate = context.coordinator
@@ -76,7 +76,6 @@ struct MapView: UIViewRepresentable {
            @unknown default:
                break
            }
-
        }
 }
 //MARK: - Coordinator
@@ -167,9 +166,6 @@ extension MapView {
         private func showCurrentPath(model: MapViewModel) {
             do {
                 let currentPath = try dataBase.loadPath(name: dataBase.defaultPathName)
-                for coord in currentPath {
-                    addPointToTrack(at: coord, model: model)
-                }
                 let bounds = GMSCoordinateBounds(path: model.routePath)
                 mapView?.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 50.0))
             } catch {
@@ -185,7 +181,7 @@ extension MapView {
             let manualMarker = GMSMarker(position: coordinate)
             manualMarker.map = self.mapView
             let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            
+          
             let geoCoder = CLGeocoder()
             geoCoder.reverseGeocodeLocation(location) { places, error in
                 print(places?.last)
@@ -196,6 +192,7 @@ extension MapView {
                 addPointToTrack(at: location, model: mapViewModel)
                 let camera = GMSCameraPosition.camera(withTarget: location, zoom: 15)
                 if let mapView = self.mapView {
+                    mapViewModel.setUserMarker(mapView: mapView, at: location)
                     mapView.animate(to: camera)
                     mapView.camera = camera
                 } else {
@@ -207,7 +204,6 @@ extension MapView {
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             guard let location = locations.last else { return }
             if trackLocation {
-                addPointToTrack(at: location.coordinate, model: mapViewModel)
                 let position = GMSCameraPosition(target: location.coordinate, zoom: 15)
                 mapView?.animate(to: position)
             }

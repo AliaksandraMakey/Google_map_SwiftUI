@@ -1,5 +1,5 @@
 //
-//  Notifications.swift
+//  NotificationManager.swift
 //  Google_map_SwiftUI
 //
 //  Created by Александра Макей on 13.12.2023.
@@ -8,7 +8,8 @@
 import UIKit
 import UserNotifications
 
-class Notifications: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
+class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
+    
     let notificationIdentifier = "MapsNotification"
     let notificationType = "LocalNotification"
     let notificationAfterMinutesInterval: Double = 1

@@ -13,7 +13,7 @@ struct LoginView: View {
     var isLoginValid: Bool {
         return viewModel.login.count >= 3 && viewModel.password.count >= 6
     }
-    var alerts = Alerts()
+    var alert = Alerts()
     //MARK: - Show view
     @State private var showAlert = false
     @State private var showMainView = false
@@ -49,7 +49,7 @@ struct LoginView: View {
         .padding()
         //MARK: - Presenters
         .alert(isPresented: $showAlert) {
-            self.alerts.showErrorAuthAlert()
+                self.alert.showErrorAuthAlert()
         }
         .fullScreenCover(isPresented: $showMainView, content: {
             MainView()

@@ -12,7 +12,7 @@ import UserNotifications
 
 @main
 struct Google_map_SwiftUIApp: SwiftUI.App {
-    let notifications = Notifications()
+    let notifications = NotificationManager()
     init() {
         GMSServices.provideAPIKey("key")
 #if DEBUG
